@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ayaat Ismail — Researcher</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Oswald:wght@300;400;500&family=IBM+Plex+Mono:wght@300;400&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #0e0e0e;
+      --paper: #f5f0e8;
+      --warm: #f0ead8;
+      --gold: #b8860b;
+      --rust: #8b3a2a;
+      --olive: #4a5240;
+      --muted: #5a5346;
+      --olive-green: #6b8e23;
+      --olive-light: #a3b18a;
+    }
+    body {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      background: var(--paper);
+      color: var(--ink);
+    }
+    .navbar {
+      background: var(--paper) !important;
+      border-bottom: 2px solid #e0d8c6;
+    }
+    .navbar-brand span {
+      color: var(--gold);
+      font-style: italic;
+    }
+    .navbar-nav .nav-link {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.98rem;
+      color: var(--olive) !important;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.2s, color 0.2s;
+      padding-bottom: 0.2rem;
+    }
+    .navbar-nav .nav-link:hover, .navbar-nav .nav-link.active {
+      color: var(--gold) !important;
+      border-bottom: 2px solid var(--gold);
+    }
+    .btn-outline-success {
+      border-color: var(--olive);
+      color: var(--olive);
+    }
+    .btn-outline-success:hover {
+      background: var(--olive);
+      color: #fff;
+      border-color: var(--olive);
+    }
+    .hero-section {
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      background: var(--warm);
+      margin-bottom: 2rem;
+      animation: fadeIn 1.2s;
+      overflow: visible;
+    }
+    .hero-img {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid #b8860b33;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+      background: #fff;
+      transition: transform 0.3s;
+      transform: rotate(-7deg); /* Added rotation to the left */
+    }
+    .hero-img:hover {
+      transform: scale(1.05) rotate(-9deg); /* Slightly more on hover */
+    }
+    .hero-name-ar {
+      font-family: 'Amiri', serif;
+      color: var(--muted);
+      direction: rtl;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.1rem;
+      font-weight: 300;
+      letter-spacing: 0.01em;
+      margin-bottom: 0.5rem;
+      color: var(--ink);
+      position: relative;
+      display: inline-block;
+    }
+    .section-title em {
+      color: var(--rust);
+      font-style: italic;
+    }
+    .section-header-line {
+      height: 3px;
+      width: 60px;
+      background: linear-gradient(90deg, var(--olive-green), var(--olive-light));
+      margin-top: 8px;
+      margin-bottom: 24px;
+      border-radius: 2px;
+      box-shadow: 0 0 8px 0 var(--olive-light);
+    }
+    .research-card, .project-card {
+      border: 1px solid #e0d8c6;
+      border-radius: 18px;
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+      margin-bottom: 1.5rem;
+      transition: box-shadow 0.2s, transform 0.2s;
+      cursor: pointer;
+    }
+    .research-card:hover, .project-card:hover {
+      box-shadow: 0 8px 32px rgba(74,82,64,0.10);
+      transform: translateY(-4px) scale(1.01);
+      border-color: var(--olive);
+    }
+    .badge.bg-secondary {
+      background: linear-gradient(90deg, var(--olive-green), var(--olive)) !important;
+      color: #fff;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      border-radius: 4px;
+      box-shadow: 0 2px 8px 0 var(--olive-light);
+    }
+    .footer {
+      background: var(--warm);
+      color: var(--muted);
+      padding: 1.5rem 0;
+      text-align: center;
+      font-size: 0.95rem;
+      margin-top: 2rem;
+      border-top: 2px solid #e0d8c6;
+      position: relative;
+      overflow: hidden;
+    }
+    a.text-warning {
+      color: var(--gold) !important;
+    }
+    .section-header {
+      margin-bottom: 2rem;
+    }
+    .section-header .section-title {
+      margin-bottom: 0;
+    }
+    .section-header-line {
+      margin-left: 0;
+    }
+    /* Fade in animation */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    /* Responsive tweaks */
+    @media (max-width: 767px) {
+      .section-title {
+        font-size: 1.5rem;
+      }
+      .hero-img {
+        width: 110px;
+        height: 110px;
+      }
+      .hero-section {
+        min-height: 50vh;
+      }
+    }
+    /* Collapsible cards */
+    .collapsible-content {
+      display: none;
+      margin-top: 1rem;
+      color: var(--muted);
+      font-size: 1rem;
+      animation: fadeIn 0.5s;
+    }
+    .collapsible-card.open .collapsible-content {
+      display: block;
+    }
+    /* Editable highlight */
+    .editable[contenteditable="true"] {
+      outline: 2px dashed var(--gold);
+      background: #fffbe6;
+    }
+    .olive-branch {
+      position: absolute;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.5;
+      transition: opacity 0.3s;
+    }
+    .olive-branch.hero {
+      top: 18px;
+      left: 68%;
+      width: 38px;
+      min-width: 38px;
+      max-width: 38px;
+      opacity: 0.4;
+      transform: rotate(-10deg);
+    }
+    .olive-branch.bottom-right {
+      bottom: 8px;
+      right: 12px;
+      width: 38px;
+      min-width: 38px;
+      max-width: 38px;
+      opacity: 0.4;
+      transform: rotate(12deg) scaleX(-1);
+    }
+    /* Abstract accent shapes inspired by counter-cartography, film, and borders */
+    .abstract-shape {
+      position: absolute;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.28; /* was 0.18 */
+      filter: blur(0.5px);
+      transition: opacity 0.3s;
+    }
+    .abstract-shape.film-reel {
+      top: 30px;
+      left: -60px;
+      width: 110px;
+      height: 110px;
+      opacity: 0.13;
+      transform: rotate(-12deg);
+    }
+    .abstract-shape.map-line {
+      bottom: 40px;
+      right: -50px;
+      width: 120px;
+      height: 80px;
+      opacity: 0.14;
+      transform: rotate(8deg);
+    }
+    .abstract-shape.checkpoint {
+      top: 60%;
+      left: 70%;
+      width: 70px;
+      height: 70px;
+      opacity: 0.12;
+      transform: rotate(-18deg);
+    }
+    .abstract-shape.sumud {
+      top: 80px;
+      right: 10%;
+      width: 90px;
+      height: 90px;
+      opacity: 0.13;
+      transform: rotate(22deg);
+    }
+    @media (max-width: 767px) {
+      .abstract-shape {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Admin Login Modal -->
+  <div id="loginModal" class="modal" tabindex="-1" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.3);z-index:3000;align-items:center;justify-content:center;">
+    <div class="modal-dialog">
+      <div class="modal-content p-4">
+        <h5 class="mb-3">Admin Login</h5>
+        <input type="password" id="adminPass" class="form-control mb-3" placeholder="Password">
+        <button class="btn btn-success" onclick="doLogin()">Login</button>
+        <button class="btn btn-link" onclick="closeLogin()">Cancel</button>
+        <div id="loginError" class="text-danger mt-2" style="display:none;">Wrong password</div>
+      </div>
+    </div>
+  </div>
+  <button id="showLogin" class="btn btn-outline-warning m-3" style="position:fixed;top:10px;right:10px;z-index:2000;">Admin Login</button>
+  <button id="edit-toggle" class="btn btn-outline-success m-3" style="position:fixed;top:60px;right:10px;z-index:2000;display:none;">Edit Mode</button>
+  <button id="save-edits" class="btn btn-warning m-3" style="position:fixed;top:110px;right:10px;z-index:2000;display:none;">Save Edits</button>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-light shadow-sm sticky-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#">Ayaat <span>Ismail</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#research">Research</a></li>
+          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="#writing">Writing</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#cv">CV</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero-section position-relative" id="home" style="overflow:visible;">
+    <!-- Abstract SVGs as background accents -->
+    <div style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:2;">
+      <!-- Film reel (symbolizing cinema) -->
+      <svg class="abstract-shape film-reel" style="z-index:2;" viewBox="0 0 110 110" fill="none">
+        <circle cx="55" cy="55" r="50" stroke="#4a5240" stroke-width="7" fill="#a3b18a"/>
+        <circle cx="55" cy="55" r="28" stroke="#b8860b" stroke-width="4" fill="none"/>
+        <circle cx="55" cy="25" r="6" fill="#8b3a2a"/>
+        <circle cx="55" cy="85" r="6" fill="#8b3a2a"/>
+        <circle cx="25" cy="55" r="6" fill="#8b3a2a"/>
+        <circle cx="85" cy="55" r="6" fill="#8b3a2a"/>
+      </svg>
+      <!-- Map line (counter-cartography) -->
+      <svg class="abstract-shape map-line" style="z-index:2;" viewBox="0 0 120 80" fill="none">
+        <path d="M10,70 Q40,10 110,40" stroke="#6b8e23" stroke-width="7" fill="none" stroke-linecap="round"/>
+        <circle cx="10" cy="70" r="5" fill="#b8860b"/>
+        <circle cx="110" cy="40" r="5" fill="#b8860b"/>
+      </svg>
+      <!-- Checkpoint (abstracted barrier/gate) -->
+      <svg class="abstract-shape checkpoint" style="z-index:2;" viewBox="0 0 70 70" fill="none">
+        <rect x="10" y="30" width="50" height="10" rx="5" fill="#8b3a2a"/>
+        <rect x="32" y="10" width="6" height="50" rx="3" fill="#4a5240"/>
+        <circle cx="35" cy="35" r="8" fill="#a3b18a" stroke="#6b8e23" stroke-width="2"/>
+      </svg>
+      <!-- Sumud spiral (resilience, rootedness) -->
+      <svg class="abstract-shape sumud" style="z-index:2;" viewBox="0 0 90 90" fill="none">
+        <path d="M45,45 Q60,30 75,45 Q60,60 45,45 Q30,30 15,45 Q30,60 45,45" stroke="#6b8e23" stroke-width="4" fill="none"/>
+        <circle cx="45" cy="45" r="6" fill="#b8860b"/>
+      </svg>
+    </div>
+    <!-- Olive branch SVG decoration (smaller, accent) -->
+    <svg class="olive-branch hero" viewBox="0 0 120 60" fill="none" style="position:absolute;z-index:3;">
+      <path d="M10,50 Q40,10 110,30" stroke="#6b8e23" stroke-width="6" fill="none"/>
+      <ellipse cx="25" cy="38" rx="7" ry="16" fill="#a3b18a" transform="rotate(-18 25 38)"/>
+      <ellipse cx="45" cy="28" rx="6" ry="13" fill="#6b8e23" transform="rotate(-10 45 28)"/>
+      <ellipse cx="65" cy="22" rx="5" ry="11" fill="#a3b18a" transform="rotate(8 65 22)"/>
+      <ellipse cx="85" cy="25" rx="7" ry="15" fill="#6b8e23" transform="rotate(12 85 25)"/>
+    </svg>
+    <div class="container" style="position:relative;z-index:4;">
+      <div class="row align-items-center g-5">
+        <div class="col-md-6 text-center text-md-start">
+          <p class="text-uppercase small text-muted mb-2" style="font-family:'IBM Plex Mono',monospace;">PhD Student &amp; CHI Fellow — Michigan State University</p>
+          <h1 class="display-4 fw-light mb-1 editable" data-edit="hero-name">Ayaat<br>Ismail</h1>
+          <p class="hero-name-ar fs-4 mb-3 editable" data-edit="hero-arabic">آيات إسماعيل</p>
+          <p class="lead mb-3 editable" data-edit="hero-lead">Digital Humanities · Palestinian Film Studies · Feminist Surveillance Theory</p>
+          <div class="mb-3">
+            <span class="badge bg-secondary me-1 mb-1">Checkpoint Cinema</span>
+            <span class="badge bg-secondary me-1 mb-1">Counter-Cartography</span>
+            <span class="badge bg-secondary me-1 mb-1">Sumud</span>
+            <span class="badge bg-secondary me-1 mb-1">Digital Archives</span>
+            <span class="badge bg-secondary me-1 mb-1">Feminist Witnessing</span>
+          </div>
+        </div>
+        <div class="col-md-6 text-center">
+          <img src="assets/images/yoyo1.jpeg" alt="Ayaat Ismail" class="hero-img mb-3"
+            onerror="this.style.display='none';document.getElementById('photo-placeholder').style.display='block';">
+          <div id="photo-placeholder" style="display:none;">
+            <span style="font-size:3rem;">◎</span>
+            <div class="text-muted" style="font-family:'IBM Plex Mono',monospace;font-size:0.9rem;">Photo coming soon</div>
+          </div>
+          <div class="mt-3" style="font-family:'IBM Plex Mono',monospace;font-size:0.95rem;">
+            <strong>Michigan State University</strong><br>
+            Department of English / Digital Humanities<br>
+            CHI Fellowship 2025–2026<br>
+            East Lansing, Michigan
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1;">
+      <!-- Film reel (cinema) -->
+      <svg class="abstract-shape film-reel" style="top:18px;left:10px;width:48px;height:48px;opacity:0.22;" viewBox="0 0 110 110" fill="none">
+        <circle cx="55" cy="55" r="50" stroke="#4a5240" stroke-width="7" fill="#a3b18a"/>
+        <circle cx="55" cy="55" r="28" stroke="#b8860b" stroke-width="4" fill="none"/>
+        <circle cx="55" cy="25" r="6" fill="#8b3a2a"/>
+        <circle cx="55" cy="85" r="6" fill="#8b3a2a"/>
+        <circle cx="25" cy="55" r="6" fill="#8b3a2a"/>
+        <circle cx="85" cy="55" r="6" fill="#8b3a2a"/>
+      </svg>
+      <!-- Map line (counter-cartography) -->
+      <svg class="abstract-shape map-line" style="bottom:18px;right:10px;width:54px;height:36px;opacity:0.18;" viewBox="0 0 120 80" fill="none">
+        <path d="M10,70 Q40,10 110,40" stroke="#6b8e23" stroke-width="7" fill="none" stroke-linecap="round"/>
+        <circle cx="10" cy="70" r="5" fill="#b8860b"/>
+        <circle cx="110" cy="40" r="5" fill="#b8860b"/>
+      </svg>
+      <!-- Checkpoint (barrier/gate) -->
+      <svg class="abstract-shape checkpoint" style="top:60%;left:80%;width:32px;height:32px;opacity:0.13;" viewBox="0 0 70 70" fill="none">
+        <rect x="10" y="30" width="50" height="10" rx="5" fill="#8b3a2a"/>
+        <rect x="32" y="10" width="6" height="50" rx="3" fill="#4a5240"/>
+        <circle cx="35" cy="35" r="8" fill="#a3b18a" stroke="#6b8e23" stroke-width="2"/>
+      </svg>
+      <!-- Sumud spiral (resilience) -->
+      <svg class="abstract-shape sumud" style="top:18px;right:18%;width:38px;height:38px;opacity:0.15;" viewBox="0 0 90 90" fill="none">
+        <path d="M45,45 Q60,30 75,45 Q60,60 45,45 Q30,30 15,45 Q30,60 45,45" stroke="#6b8e23" stroke-width="4" fill="none"/>
+        <circle cx="45" cy="45" r="6" fill="#b8860b"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- RESEARCH -->
+  <section id="research" class="container mb-5">
+    <div class="section-header">
+      <h2 class="section-title">What I<br><em>Work On</em></h2>
+      <div class="section-header-line"></div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="research-card collapsible-card p-4 h-100" onclick="toggleCard(this)">
+          <h4 class="mb-1 editable" data-edit="research-1-title">Palestinian Women's Cinema</h4>
+          <div class="collapsible-content editable" data-edit="research-1-content">
+            I study how Mai Masri, Annemarie Jacir, and Farah Nabulsi use formal cinematic strategies — camera angle, duration, ellipsis, offscreen sound — to refuse rather than reproduce the surveillance gaze they are forced to document.<br><br>
+            <strong>Key Questions:</strong>
+            <ul>
+              <li>How do Palestinian women filmmakers subvert surveillance?</li>
+              <li>What cinematic techniques are used to resist occupation?</li>
+              <li>How does film become a tool for feminist witnessing?</li>
+            </ul>
+            <strong>Featured Films:</strong> <em>3000 Nights</em>, <em>Salt of this Sea</em>, <em>The Present</em>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="research-card collapsible-card p-4 h-100" onclick="toggleCard(this)">
+          <h4 class="mb-1 editable" data-edit="research-2-title">Counter-Cartographic Practice</h4>
+          <div class="collapsible-content editable" data-edit="research-2-content">
+            Drawing on de Certeau, Lefebvre, and Weizman, I theorize Palestinian cinema as a form of spatial argumentation: a way of narrating the land from within rather than surveying it from above.<br><br>
+            <strong>Key Concepts:</strong>
+            <ul>
+              <li>Counter-mapping and spatial resistance</li>
+              <li>Everyday navigation of borders and checkpoints</li>
+              <li>Film as a map of lived experience</li>
+            </ul>
+            <strong>Featured Analysis:</strong> Checkpoint scenes, landscape shots, movement and stasis
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="research-card collapsible-card p-4 h-100" onclick="toggleCard(this)">
+          <h4 class="mb-1 editable" data-edit="research-3-title">Surveillance, Race, and Gender</h4>
+          <div class="collapsible-content editable" data-edit="research-3-content">
+            Using Simone Browne's framework of racialized surveillance and Shalhoub-Kevorkian's concept of infiltrated intimacies, I analyze how occupation enters domestic, bodily, and intimate space — and how filmmakers witness from inside those spaces.<br><br>
+            <strong>Key Themes:</strong>
+            <ul>
+              <li>Intersectionality in surveillance studies</li>
+              <li>Gendered experiences at checkpoints</li>
+              <li>Resistance through everyday acts</li>
+            </ul>
+            <strong>Featured Work:</strong> Interviews, oral histories, and autoethnography
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="research-card collapsible-card p-4 h-100" onclick="toggleCard(this)">
+          <h4 class="mb-1 editable" data-edit="research-4-title">Digital Humanities Methodology</h4>
+          <div class="collapsible-content editable" data-edit="research-4-content">
+            My digital work explores how the form of an archive can enact its own argument — building platforms where geography, film analysis, and theoretical vocabulary exist in conversation rather than sequence.<br><br>
+            <strong>Key Projects:</strong>
+            <ul>
+              <li>Interactive digital archives</li>
+              <li>StoryMaps and spatial storytelling</li>
+              <li>Collaborative, open-access scholarship</li>
+            </ul>
+            <strong>Featured Platform:</strong> <a href="https://awisma01.github.io/cinematic-refusals/" target="_blank">Cinematic Refusals</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="container mb-5">
+    <div class="section-header">
+      <h2 class="section-title">Cinematic<br><em>Counter-Cartographies</em></h2>
+      <div class="section-header-line"></div>
+    </div>
+    <div class="project-card p-4 mb-3 collapsible-card" onclick="toggleCard(this)">
+      <div class="row">
+        <div class="col-md-7">
+          <h3 class="mb-2 editable" data-edit="project-title">Cinematic <em>Counter-</em>Cartographies</h3>
+          <div class="collapsible-content editable" data-edit="project-content">
+            <p>A digital archive mapping how Palestinian women filmmakers transform Israeli checkpoints and surveillance infrastructures into sites of cinematic resistance across twenty-five years of film.</p>
+            <ul>
+              <li><strong>Archive Period:</strong> Palestinian Cinema, 2000–2025</li>
+              <li><strong>Primary Filmmakers:</strong> Masri, Jacir, Nabulsi</li>
+              <li><strong>Checkpoints Mapped:</strong> Qalandiya · Huwwara · Rachel · Container</li>
+              <li><strong>Theoretical Framework:</strong> Sumud · Counter-Cartography · Feminist Witnessing</li>
+              <li><strong>Languages:</strong> English · Arabic (Palestinian dialect)</li>
+            </ul>
+            <a href="https://awisma01.github.io/cinematic-refusals/" class="btn btn-outline-success btn-sm" target="_blank">Visit the archive →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WRITING -->
+  <section id="writing" class="container mb-5">
+    <div class="section-header">
+      <h2 class="section-title">Work<br><em>In Progress</em></h2>
+      <div class="section-header-line"></div>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-bordered align-middle">
+        <thead class="table-light">
+          <tr>
+            <th>Year</th>
+            <th>Title</th>
+            <th>Type</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2026</td>
+            <td>Cinematic Counter-Cartographies: Palestinian Women Filmmakers and the Spatial Politics of the Checkpoint</td>
+            <td>White Paper</td>
+          </tr>
+          <tr>
+            <td>2026</td>
+            <td>Framing the Checkpoint: Counter-Surveillance Aesthetics in Jacir, Masri, and Nabulsi</td>
+            <td>Article</td>
+          </tr>
+          <tr>
+            <td>2025</td>
+            <td>Sumud as Digital Method: Building Counter-Archival Platforms for Palestinian Cinema</td>
+            <td>Presentation</td>
+          </tr>
+          <tr>
+            <td>2025</td>
+            <td>What the Map Cuts Up: De Certeau, Weizman, and the Checkpoint Film</td>
+            <td>Seminar Paper</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="text-muted small mt-2" style="font-family:'IBM Plex Mono',monospace;">
+      * Titles provisional. Full CV available on request.
+    </p>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="container mb-5">
+    <div class="section-header">
+      <h2 class="section-title">Who<br><em>I Am</em></h2>
+      <div class="section-header-line"></div>
+    </div>
+    <div class="row">
+      <div class="col-md-8">
+        <p class="editable" data-edit="about-1">
+          I am a PhD student and CHI Fellow at Michigan State University, specializing in digital humanities, Palestinian film studies, and feminist surveillance theory. My research explores the intersection of cinema, space, and resistance, with a focus on Palestinian women's filmmaking and counter-cartographic practices.
+        </p>
+        <p class="editable" data-edit="about-2">
+          I am passionate about building digital archives and platforms that challenge dominant narratives and create space for marginalized voices. My work is grounded in feminist methodologies and a commitment to collaborative, community-centered scholarship.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CV SECTION -->
+  <section id="cv" class="container mb-5">
+    <div class="section-header">
+      <h2 class="section-title">Curriculum<br><em>Vitae</em></h2>
+      <div class="section-header-line"></div>
+    </div>
+    <div class="row">
+      <div class="col-md-8">
+        <p>
+          Download my full CV here:
+          <a href="assets/ayaat-ismail-cv.pdf" class="btn btn-outline-success btn-sm ms-2" target="_blank">Download CV (PDF)</a>
+        </p>
+        <p>
+          Or view my digital CV on my project site:
+          <a href="https://awisma01.github.io/cinematic-refusals/" target="_blank">awisma01.github.io/cinematic-refusals/</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="container mb-5">
+    <div class="section-header">
+      <h2 class="section-title">Contact<br><em>Me</em></h2>
+      <div class="section-header-line"></div>
+    </div>
+    <div class="row">
+      <div class="col-md-7">
+        <form>
+          <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Your name">
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="email" placeholder="name@example.com">
+          </div>
+          <div class="mb-3">
+            <label for="message" class="form-label">Message</label>
+            <textarea class="form-control" id="message" rows="4" placeholder="Your message"></textarea>
+          </div>
+          <button type="submit" class="btn btn-success" style="background: var(--olive); border-color: var(--olive);">Send</button>
+        </form>
+      </div>
+      <div class="col-md-5 mt-4 mt-md-0">
+        <div class="p-3 bg-light rounded">
+          <p class="mb-2"><strong>Email:</strong> <a href="mailto:ismailay@msu.edu">ismailay@msu.edu</a></p>
+          <p class="mb-2"><strong>Website:</strong> <a href="https://awisma01.github.io/cinematic-refusals/" target="_blank">awisma01.github.io/cinematic-refusals/</a></p>
+          <p class="mb-2"><strong>Institution:</strong> <a href="https://msu.edu" target="_blank" rel="noopener">Michigan State University ↗</a></p>
+          <div class="mt-3" style="font-family:'Amiri',serif;direction:rtl;color:#5a5346;">
+            أهلاً وسهلاً — أنا مبسوطة أسمع من أي حدا مهتم بالسينما الفلسطينية أو الأرشيفات الرقمية أو قصص الحواجز. إذا عندك أفلام أو مواد أرشيفية أو تجارب شخصية عند الحواجز وبدك تشاركها مع المشروع، تواصل معي بكل سهولة.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    &copy; 2025 Ayaat Ismail · Michigan State University · Part of <a href="index.html" class="text-warning text-decoration-none">Cinematic Counter-Cartographies</a> · CHI Fellowship Project
+    <!-- Olive branch in footer for extra accent (smaller, accent) -->
+    <svg class="olive-branch bottom-right" viewBox="0 0 120 60" fill="none" style="right:10px;bottom:10px;">
+      <path d="M10,50 Q40,10 110,30" stroke="#6b8e23" stroke-width="6" fill="none"/>
+      <ellipse cx="25" cy="38" rx="7" ry="16" fill="#a3b18a" transform="rotate(-18 25 38)"/>
+      <ellipse cx="45" cy="28" rx="6" ry="13" fill="#6b8e23" transform="rotate(-10 45 28)"/>
+      <ellipse cx="65" cy="22" rx="5" ry="11" fill="#a3b18a" transform="rotate(8 65 22)"/>
+      <ellipse cx="85" cy="25" rx="7" ry="15" fill="#6b8e23" transform="rotate(12 85 25)"/>
+    </svg>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Collapsible cards for research and project sections
+    function toggleCard(card) {
+      card.classList.toggle('open');
+    }
+    // Animate section appearance on scroll
+    function animateOnScroll() {
+      document.querySelectorAll('section').forEach(section => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) {
+          section.style.opacity = 1;
+          section.style.transform = 'none';
+        }
+      });
+    }
+    document.addEventListener('scroll', animateOnScroll);
+    window.onload = () => {
+      document.querySelectorAll('section').forEach(section => {
+        section.style.opacity = 0;
+        section.style.transform = 'translateY(40px)';
+      });
+      animateOnScroll();
+    };
+
+    // --- Admin Login and Edit Mode ---
+    document.getElementById('showLogin').onclick = function() {
+      document.getElementById('loginModal').style.display = 'flex';
+      document.getElementById('adminPass').value = '';
+      document.getElementById('loginError').style.display = 'none';
+    };
+    function closeLogin() {
+      document.getElementById('loginModal').style.display = 'none';
+    }
+    // Change this password to your own secret!
+    const ADMIN_PASSWORD = "changeme";
+    function doLogin() {
+      const pass = document.getElementById('adminPass').value;
+      if (pass === ADMIN_PASSWORD) {
+        document.getElementById('loginModal').style.display = 'none';
+        document.getElementById('showLogin').style.display = 'none';
+        document.getElementById('edit-toggle').style.display = '';
+        document.getElementById('save-edits').style.display = '';
+      } else {
+        document.getElementById('loginError').style.display = 'block';
+      }
+    }
+    // Edit mode toggle
+    let editMode = false;
+    document.getElementById('edit-toggle').onclick = function() {
+      editMode = !editMode;
+      document.querySelectorAll('.editable').forEach(el => {
+        el.contentEditable = editMode;
+      });
+      this.textContent = editMode ? 'Exit Edit Mode' : 'Edit Mode';
+    };
+    // Save edits to localStorage
+    document.getElementById('save-edits').onclick = function() {
+      document.querySelectorAll('.editable').forEach(el => {
+        if (el.dataset.edit) {
+          localStorage.setItem('edit-' + el.dataset.edit, el.innerHTML);
+        }
+      });
+      alert('Edits saved! (They will persist on this browser/device.)');
+    };
+    // Load edits from localStorage
+    window.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.editable').forEach(el => {
+        if (el.dataset.edit) {
+          const saved = localStorage.getItem('edit-' + el.dataset.edit);
+          if (saved) el.innerHTML = saved;
+        }
+      });
+    });
+  </script>
+</body>
+</html>
