@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Cinematic Counter-Cartographies — Ayaat Ismail</title>
+  <title>Ayaat Ismail — Home</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=IBM+Plex+Mono:wght@300;400&display=swap" rel="stylesheet">
   <style>
@@ -13,6 +13,7 @@
       --beige:#f5efe6;
       --sand:#e8dfd1;
       --text:#2f2f2f;
+      --muted:#5a5346;
     }
     body{
       background:var(--beige);
@@ -33,42 +34,80 @@
     .nav-link:hover, .nav-link.active{
       color:var(--olive)!important;
     }
-    .section{
-      padding:70px 0;
+    .hero-section{
+      padding:70px 0 40px 0;
+      background:var(--sand);
+      border-radius:0 0 2.5rem 2.5rem;
+      margin-bottom:40px;
+    }
+    .hero-img{
+      width:180px;
+      height:180px;
+      object-fit:cover;
+      border-radius:50%;
+      border:4px solid #b8860b33;
+      box-shadow:0 8px 32px rgba(0,0,0,0.08);
+      background:#fff;
+      margin-bottom:1.5rem;
+      transform:rotate(-7deg);
+      transition:transform 0.3s;
+    }
+    .hero-img:hover{
+      transform:scale(1.05) rotate(-9deg);
+    }
+    .hero-name-ar{
+      font-family:'Amiri', serif;
+      color:var(--muted);
+      direction:rtl;
     }
     .section-title{
       font-size:2rem;
+      font-family:'Cormorant Garamond',serif;
+      font-weight:400;
     }
-    .line{
+    .section-header-line{
       width:60px;
       height:3px;
       background:var(--olive);
       margin-bottom:25px;
+      border-radius:2px;
     }
-    .pretty-card{
-      background:var(--sand);
-      border-radius:18px;
-      overflow:hidden;
-      transition:0.3s;
-      height:100%;
+    .badge.bg-secondary{
+      background:var(--olive)!important;
+      color:#fff;
+      font-family:'IBM Plex Mono',monospace;
+      font-size:0.85rem;
+      letter-spacing:0.08em;
+      border-radius:4px;
     }
-    .pretty-card img{
-      width:100%;
-      height:220px;
-      object-fit:cover;
-    }
-    .pretty-card .content{
-      padding:20px;
-    }
-    .pretty-card h4{
-      color:var(--olive-dark);
-    }
-    footer{
+    .footer{
       padding:40px;
       text-align:center;
       background:var(--sand);
       margin-top:60px;
       font-size:0.9rem;
+    }
+    .explore-cards .card{
+      border-radius:1.5rem;
+      box-shadow:0 2px 8px rgba(0,0,0,0.04);
+      background:#fbeee6;
+      border:none;
+      transition:box-shadow 0.2s,transform 0.2s;
+      overflow:hidden;
+    }
+    .explore-cards .card:hover{
+      box-shadow:0 8px 32px rgba(74,82,64,0.13),0 2px 8px rgba(0,0,0,0.04);
+      transform:translateY(-2px) scale(1.02);
+    }
+    .explore-cards .card img{
+      width:100%;
+      min-height:220px;
+      max-height:320px;
+      object-fit:cover;
+      transition:transform 0.2s;
+    }
+    .explore-cards .card img:hover{
+      transform:scale(1.04) rotate(-2deg);
     }
   </style>
 </head>
@@ -82,40 +121,114 @@
     </button>
     <div class="collapse navbar-collapse" id="nav">
       <ul class="navbar-nav ms-auto">
-        <li><a class="nav-link" href="index.html">Home</a></li>
+        <li><a class="nav-link active" href="index.html">Home</a></li>
         <li><a class="nav-link" href="research.html">Research</a></li>
-        <li><a class="nav-link active" href="projects.html">Projects</a></li>
+        <li><a class="nav-link" href="projects.html">Projects</a></li>
         <li><a class="nav-link" href="cv.html">CV</a></li>
       </ul>
     </div>
   </div>
 </nav>
 
-<!-- PROJECTS SECTION -->
-<section class="section container">
-  <h2 class="section-title">Cinematic Counter-Cartographies</h2>
-  <div class="line"></div>
-  <div class="row">
-    <div class="col-md-7">
-      <p>
-        A digital archive mapping how Palestinian women filmmakers transform Israeli checkpoints and surveillance infrastructures into sites of cinematic resistance across twenty-five years of film.
-      </p>
-      <ul>
-        <li><strong>Archive Period:</strong> Palestinian Cinema, 2000–2025</li>
-        <li><strong>Primary Filmmakers:</strong> Masri, Jacir, Nabulsi</li>
-        <li><strong>Checkpoints Mapped:</strong> Qalandiya · Huwwara · Rachel · Container</li>
-        <li><strong>Theoretical Framework:</strong> Sumud · Counter-Cartography · Feminist Witnessing</li>
-        <li><strong>Languages:</strong> English · Arabic (Palestinian dialect)</li>
-      </ul>
-      <a href="https://awisma01.github.io/cinematic-refusals/" class="btn btn-outline-success btn-sm" target="_blank">Visit the archive →</a>
-    </div>
-    <div class="col-md-5">
-      <img src="assets/images/pali2.png" alt="Cinematic Counter-Cartographies" class="img-fluid rounded-3 shadow-sm mt-3 mt-md-0">
+<!-- HERO SECTION -->
+<section class="hero-section">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-md-6 text-center text-md-start">
+        <p class="text-uppercase small text-muted mb-2" style="font-family:'IBM Plex Mono',monospace;">PhD Student &amp; CHI Fellow — Michigan State University</p>
+        <h1 class="display-4 fw-light mb-1">Ayaat<br>Ismail</h1>
+        <p class="hero-name-ar fs-4 mb-3">آيات إسماعيل</p>
+        <p class="lead mb-3">Digital Humanities · Palestinian Film Studies · Feminist Surveillance Theory</p>
+        <div class="mb-3">
+          <span class="badge bg-secondary me-1 mb-1">Checkpoint Cinema</span>
+          <span class="badge bg-secondary me-1 mb-1">Counter-Cartography</span>
+          <span class="badge bg-secondary me-1 mb-1">Sumud</span>
+          <span class="badge bg-secondary me-1 mb-1">Digital Archives</span>
+          <span class="badge bg-secondary me-1 mb-1">Feminist Witnessing</span>
+        </div>
+      </div>
+      <div class="col-md-6 text-center">
+        <img src="assets/images/yoyo1.jpeg" alt="Ayaat Ismail" class="hero-img mb-3">
+        <div class="mt-3" style="font-family:'IBM Plex Mono',monospace;font-size:0.95rem;">
+          <strong>Michigan State University</strong><br>
+          Department of English / Digital Humanities<br>
+          CHI Fellowship 2025–2026<br>
+          East Lansing, Michigan
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<footer>
+<!-- EXPLORE MORE SECTION -->
+<section id="visuals" class="container mb-5">
+  <div class="section-header">
+    <h2 class="section-title">Explore<br><em>More</em></h2>
+    <div class="section-header-line"></div>
+  </div>
+  <div class="row g-4 align-items-stretch justify-content-center explore-cards">
+    <!-- Research Tab -->
+    <div class="col-12 col-md-4 d-flex">
+      <a href="research.html" class="w-100 text-decoration-none">
+        <div class="card h-100">
+          <img src="assets/images/pali1.png" alt="Research">
+          <div class="card-body">
+            <h5 class="mb-2" style="color:var(--olive);font-family:'Cormorant Garamond',serif;">Research</h5>
+            <p class="mb-0" style="font-size:1rem;color:var(--muted);">Discover my current research on Palestinian cinema, counter-cartography, and feminist theory.</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <!-- CV Tab -->
+    <div class="col-12 col-md-4 d-flex">
+      <a href="cv.html" class="w-100 text-decoration-none">
+        <div class="card h-100">
+          <img src="assets/images/pali2.png" alt="CV">
+          <div class="card-body">
+            <h5 class="mb-2" style="color:var(--olive);font-family:'Cormorant Garamond',serif;">Curriculum Vitae</h5>
+            <p class="mb-0" style="font-size:1rem;color:var(--muted);">View my academic CV, awards, publications, and teaching experience.</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <!-- Digital Projects Tab -->
+    <div class="col-12 col-md-4 d-flex">
+      <a href="projects.html" class="w-100 text-decoration-none">
+        <div class="card h-100">
+          <img src="assets/images/pali3.png" alt="Digital Projects">
+          <div class="card-body">
+            <h5 class="mb-2" style="color:var(--olive);font-family:'Cormorant Garamond',serif;">Digital Projects</h5>
+            <p class="mb-0" style="font-size:1rem;color:var(--muted);">Explore my digital archives, counter-cartographic platforms, and collaborative work.</p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+  <div class="text-center mt-4 text-muted" style="font-size:1rem;">
+    Navigate to research, CV, or digital projects through these visual tabs.
+  </div>
+</section>
+
+<!-- ABOUT SECTION -->
+<section class="container my-5">
+  <div class="section-header">
+    <h2 class="section-title">About</h2>
+    <div class="section-header-line"></div>
+  </div>
+  <div class="row">
+    <div class="col-md-8">
+      <p>
+        I am a PhD student and CHI Fellow at Michigan State University, working at the intersection of digital humanities, Palestinian film studies, and feminist surveillance theory, with a specialization in Women and Gender Studies. I also hold certificates in Film Studies, Global Studies, and Digital Humanities.
+        <strong>Cinematic Counter-Cartographies</strong> is my first major digital project — an attempt to do scholarship in a form that matches the argument: that space, story, and resistance cannot be separated.
+      </p>
+      <p>
+        My research centers Palestinian women filmmakers and the formal strategies through which cinema refuses, rather than simply documents, occupation. I am particularly interested in what feminist witnessing makes legible that conventional archives cannot hold.
+      </p>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
   © 2026 Ayaat Ismail · Michigan State University · Digital Humanities & Film Studies
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
