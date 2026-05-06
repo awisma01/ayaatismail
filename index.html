@@ -28,11 +28,29 @@
       font-weight:600;
       letter-spacing:1px;
     }
-    .nav-link{
-      color:var(--text)!important;
+    .nav-link {
+      color: var(--text) !important;
+      position: relative;
+      transition: color 0.2s;
     }
-    .nav-link:hover, .nav-link.active{
-      color:var(--olive)!important;
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--olive) !important;
+    }
+    .nav-link::after {
+      content: "";
+      display: block;
+      width: 0;
+      height: 2px;
+      background: var(--olive);
+      transition: width 0.25s;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+    }
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 100%;
     }
     .hero-section{
       padding:70px 0 40px 0;
@@ -139,7 +157,7 @@
         <h1 class="display-4 fw-light mb-1">
           Ayaat <span style="font-weight:400;font-size:1.2rem;">(Yoyo)</span><br>
           <span style="font-size:1.1rem;font-family:'IBM Plex Mono',monospace;color:var(--muted);">
-            <em>pronounced: eye-YAHT iss-MY-eel</em>
+            <em>pronounced: eh-YAHT iss-Me-eel</em>
           </span>
         </h1>
         <p class="hero-name-ar fs-4 mb-3">آيات إسماعيل</p>

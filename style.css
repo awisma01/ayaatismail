@@ -7,6 +7,7 @@
   --rust: #8b3a2a;
   --olive: #4a5240;
   --muted: #5a5346;
+  --text: #2f2f2f; /* Make sure this line exists! */
 }
 
 /* Base styles */
@@ -26,11 +27,28 @@ body {
   letter-spacing: 1px;
 }
 .nav-link {
-  color: var(--ink) !important;
+  color: var(--text) !important;
+  position: relative;
+  transition: color 0.2s;
 }
 .nav-link:hover,
 .nav-link.active {
   color: var(--olive) !important;
+}
+.nav-link::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 2px;
+  background: var(--olive);
+  transition: width 0.25s;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
 }
 
 /* Section headers */
@@ -84,4 +102,4 @@ body {
 .mt-4 { margin-top: 1.5rem !important; }
 .mt-5 { margin-top: 3rem !important; }
 .mb-3 { margin-bottom: 1rem !important; }
-.me-2 { margin-right: 0.5rem
+.me-2 { margin-right: 0.5rem !important; }
