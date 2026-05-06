@@ -3,28 +3,250 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Page Title — Ayaat Ismail</title>
+  <title>Digital Projects — Ayaat Ismail</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Oswald:wght@300;400;500&family=IBM+Plex+Mono:wght@300;400&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=IBM+Plex+Mono:wght@300;400&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <style>
-    a[title="Cinematic Counter-Cartographies Preview"]:hover img,
-    a[href*="cinematic-refusals"]:hover img,
-    a[href*="palmoil"]:hover img {
-      transform: scale(1.03) rotate(-1deg);
-      box-shadow: 0 8px 32px rgba(74,82,64,0.13);
+    :root {
+      --black:       #0a0a0a;
+      --white:       #f7f2ea;
+      --green:       #1a6b3a;
+      --green-mid:   #2d8c54;
+      --green-light: #e8f3ec;
+      --red:         #c0392b;
+      --red-soft:    #f9e8e6;
+      --paper:       #f5f0e8;
+      --sand:        #e8dfd1;
+      --ink:         #1a1612;
+      --muted:       #5a5346;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      background: var(--black);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    .navbar { background: var(--black); border-bottom: 3px solid var(--green); }
+    .navbar-brand { font-weight: 700; color: var(--white) !important; letter-spacing: 1px; }
+    .navbar-brand span { font-weight: 300; color: rgba(247,242,234,0.5); }
+    .navbar-toggler-icon { filter: invert(1); }
+    .nav-link { color: rgba(247,242,234,0.7) !important; position: relative; transition: color 0.2s; }
+    .nav-link::after { content:""; display:block; width:0; height:2px; background:var(--green); transition:width 0.25s; position:absolute; left:0; bottom:0; }
+    .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+    .nav-link:hover, .nav-link.active { color: var(--white) !important; }
+
+    /* KEFFIYEH */
+    .keffiyeh-stripe {
+      height: 8px;
+      background: repeating-linear-gradient(90deg, var(--black) 0, var(--black) 20px, var(--red) 20px, var(--red) 40px, var(--green) 40px, var(--green) 60px, var(--white) 60px, var(--white) 80px);
+    }
+
+    /* HERO */
+    .projects-hero {
+      padding: 80px 0 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    .projects-hero::before {
+      content: "";
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 80% 40%, rgba(26,107,58,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--green-mid);
+      margin-bottom: 1rem;
+    }
+    .hero-title {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      margin-bottom: 1.5rem;
+    }
+    .hero-title em { color: var(--red); }
+    .hero-title .green { color: #5bba7d; }
+    .hero-lead {
+      font-size: 1.15rem;
+      color: rgba(247,242,234,0.65);
+      line-height: 1.75;
+      max-width: 560px;
+    }
+
+    /* PROJECT CARDS */
+    .projects-grid { padding: 80px 0; }
+
+    .project-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      background: #111;
+      border-radius: 1.2rem;
+      overflow: hidden;
+      margin-bottom: 3rem;
+      border: 1px solid rgba(255,255,255,0.06);
+      transition: box-shadow 0.3s;
+    }
+    .project-card:hover { box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
+    .project-card.reverse { direction: rtl; }
+    .project-card.reverse > * { direction: ltr; }
+
+    @media(max-width: 768px) {
+      .project-card, .project-card.reverse { grid-template-columns: 1fr; direction: ltr; }
+    }
+
+    .project-img-wrap {
+      position: relative;
+      overflow: hidden;
+      min-height: 320px;
+    }
+    .project-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .project-card:hover .project-img-wrap img { transform: scale(1.05); }
+    .project-img-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(0,0,0,0.3) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .project-number {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+    }
+
+    .project-body {
+      padding: 3rem 2.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .project-category {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--green-mid);
+      margin-bottom: 0.8rem;
+    }
+    .project-title {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 1.2rem;
+    }
+    .project-title em { color: var(--red); }
+    .project-desc {
+      font-size: 1rem;
+      color: rgba(247,242,234,0.65);
+      line-height: 1.75;
+      margin-bottom: 1.8rem;
+    }
+    .project-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 1.8rem;
+    }
+    .meta-row {
+      display: flex;
+      gap: 0.6rem;
+      align-items: baseline;
+      font-size: 0.9rem;
+    }
+    .meta-key {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      color: rgba(247,242,234,0.35);
+      text-transform: uppercase;
+      min-width: 90px;
+      flex-shrink: 0;
+    }
+    .meta-val { color: rgba(247,242,234,0.75); }
+
+    .project-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.8rem; }
+    .project-tag {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      padding: 3px 10px;
+      border-radius: 3px;
+      border: 1px solid rgba(255,255,255,0.12);
+      color: rgba(247,242,234,0.55);
+    }
+    .project-tag.green { border-color: rgba(45,140,84,0.5); color: #5bba7d; }
+    .project-tag.red   { border-color: rgba(192,57,43,0.5);  color: #e05a4d; }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--white);
+      text-decoration: none;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 10px 20px;
+      border: 1.5px solid var(--green);
+      border-radius: 4px;
+      transition: background 0.2s, color 0.2s;
+      align-self: flex-start;
+    }
+    .project-link:hover { background: var(--green); color: var(--white); }
+    .project-link.red { border-color: var(--red); }
+    .project-link.red:hover { background: var(--red); }
+
+    /* KEFFIYEH DIVIDER */
+    .keffiyeh-divider {
+      height: 10px;
+      background: repeating-linear-gradient(90deg, var(--black) 0, var(--black) 20px, var(--red) 20px, var(--red) 40px, var(--green) 40px, var(--green) 60px, var(--white) 60px, var(--white) 80px);
+      opacity: 0.6;
+    }
+
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* FOOTER */
+    footer {
+      background: #050505;
+      color: rgba(247,242,234,0.3);
+      text-align: center;
+      padding: 36px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      border-top: 1px solid rgba(255,255,255,0.05);
     }
   </style>
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light shadow-sm sticky-top">
+
+<nav class="navbar navbar-expand-lg sticky-top">
   <div class="container">
-    <a class="navbar-brand fw-bold" href="index.html">Ayaat <span>Ismail</span></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand" href="index.html">Ayaat <span>Ismail</span></a>
+    <button class="navbar-toggler border-0" data-bs-toggle="collapse" data-bs-target="#mainNav">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="mainNav">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav ms-auto">
         <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
         <li class="nav-item"><a class="nav-link" href="pedagogy.html">Pedagogy</a></li>
         <li class="nav-item"><a class="nav-link active" href="projects.html">Projects</a></li>
@@ -33,68 +255,126 @@
     </div>
   </div>
 </nav>
-  <section class="container my-5">
-    <div class="section-header">
-      <h2 class="section-title">Digital Projects</h2>
-      <div class="section-header-line"></div>
+
+<div class="keffiyeh-stripe"></div>
+
+<!-- HERO -->
+<section class="projects-hero">
+  <div class="container">
+    <p class="hero-eyebrow">Digital Scholarship</p>
+    <h1 class="hero-title">
+      Making <em>Space</em><br>
+      for <span class="green">Refusal</span>
+    </h1>
+    <p class="hero-lead">
+      Digital projects that argue with form as much as content — counter-archives, mapped resistances, and collaborative platforms where space, story, and solidarity cannot be separated.
+    </p>
+  </div>
+</section>
+
+<div class="keffiyeh-divider"></div>
+
+<!-- PROJECTS -->
+<section class="projects-grid">
+  <div class="container">
+
+    <!-- Project 1 -->
+    <div class="project-card reveal">
+      <div class="project-img-wrap">
+        <img src="assets/images/websitesneakpeek.png" alt="Cinematic Counter-Cartographies">
+        <div class="project-img-overlay"></div>
+        <div class="project-number">01 · Major Project</div>
+      </div>
+      <div class="project-body">
+        <p class="project-category">CHI Fellowship · MSU · 2025–2026</p>
+        <h2 class="project-title">Cinematic <em>Counter-</em>Cartographies</h2>
+        <p class="project-desc">
+          A digital archive mapping how Palestinian women filmmakers transform Israeli checkpoints and surveillance infrastructures into sites of cinematic resistance across twenty-five years of film.
+        </p>
+        <div class="project-meta">
+          <div class="meta-row"><span class="meta-key">Platform</span><span class="meta-val">GitHub Pages · HTML/CSS/JS · ArcGIS</span></div>
+          <div class="meta-row"><span class="meta-key">Period</span><span class="meta-val">Palestinian Cinema, 2000–2025</span></div>
+          <div class="meta-row"><span class="meta-key">Filmmakers</span><span class="meta-val">Masri · Jacir · Nabulsi</span></div>
+          <div class="meta-row"><span class="meta-key">Checkpoints</span><span class="meta-val">Qalandiya · Huwwara · Rachel · Container</span></div>
+        </div>
+        <div class="project-tags">
+          <span class="project-tag green">Sumud</span>
+          <span class="project-tag green">Counter-Cartography</span>
+          <span class="project-tag red">Feminist Witnessing</span>
+          <span class="project-tag">Arabic · English</span>
+        </div>
+        <a href="https://awisma01.github.io/cinematic-refusals/" class="project-link" target="_blank">
+          Visit Archive →
+        </a>
+      </div>
     </div>
-    <!-- Move your digital projects section here from index.html -->
-    <div class="project-card p-4 mb-3 collapsible-card open">
-      <div class="row">
-        <div class="col-md-7">
-          <h3 class="mb-2 editable" data-edit="project-title">Cinematic <em>Counter-</em>Cartographies</h3>
-          <div class="collapsible-content editable" data-edit="project-content" style="display:block;">
-            <p>A digital archive mapping how Palestinian women filmmakers transform Israeli checkpoints and surveillance infrastructures into sites of cinematic resistance across twenty-five years of film.</p>
-            <ul>
-              <li><strong>Platform:</strong> GitHub Pages (static site), HTML/CSS/JS, ArcGIS mapping embeds</li>
-              <li><strong>Archive Period:</strong> Palestinian Cinema, 2000–2025</li>
-              <li><strong>Primary Filmmakers:</strong> Masri, Jacir, Nabulsi</li>
-              <li><strong>Checkpoints Mapped:</strong> Qalandiya · Huwwara · Rachel · Container</li>
-              <li><strong>Theoretical Framework:</strong> Sumud · Counter-Cartography · Feminist Witnessing</li>
-              <li><strong>Languages:</strong> English · Arabic (Palestinian dialect)</li>
-            </ul>
-            <a href="https://awisma01.github.io/cinematic-refusals/" class="btn btn-outline-success btn-sm mb-3" target="_blank">Visit the archive →</a>
-            <div class="rounded shadow-sm overflow-hidden" style="border:2px solid #e8dfd1; max-width:700px; margin:auto;">
-              <a href="https://awisma01.github.io/cinematic-refusals/" target="_blank" style="display:block;">
-                <img src="assets/images/websitesneakpeek.png" 
-                     alt="Cinematic Counter-Cartographies Sneak Peek" 
-                     class="img-fluid" 
-                     style="width:100%; aspect-ratio:2/1; min-width:320px; max-width:700px; object-fit:cover; transition:transform 0.2s;">
-              </a>
-            </div>
-          </div>
+
+    <!-- Project 2 -->
+    <div class="project-card reverse reveal">
+      <div class="project-img-wrap">
+        <img src="assets/images/palmoil.png" alt="A Palm Oil Project">
+        <div class="project-img-overlay"></div>
+        <div class="project-number">02 · Collaborative</div>
+      </div>
+      <div class="project-body">
+        <p class="project-category">ArcGIS StoryMaps · MSU · March 2024</p>
+        <h2 class="project-title">A Palm Oil <em>Project</em></h2>
+        <p class="project-desc">
+          A collaborative digital humanities project exploring the global, environmental, and social impacts of palm oil production. Using digital mapping and storytelling, the project traces the histories, labor, and ecologies entangled with palm oil in Indonesia and beyond.
+        </p>
+        <div class="project-meta">
+          <div class="meta-row"><span class="meta-key">Platform</span><span class="meta-val">ArcGIS StoryMaps</span></div>
+          <div class="meta-row"><span class="meta-key">Focus</span><span class="meta-val">Environmental justice · Labor · Commodity chains</span></div>
+          <div class="meta-row"><span class="meta-key">Collaboration</span><span class="meta-val">April Best · Jambi University, Indonesia</span></div>
+        </div>
+        <div class="project-tags">
+          <span class="project-tag green">Environmental Justice</span>
+          <span class="project-tag">COIL Partnership</span>
+          <span class="project-tag red">Global Humanities</span>
+          <span class="project-tag">Indonesia</span>
+        </div>
+        <a href="https://storymaps.arcgis.com/stories/efea02be4abf4222b4499b848b27bbdc" class="project-link red" target="_blank">
+          View Project →
+        </a>
+      </div>
+    </div>
+
+    <!-- Project 3 — Surveilled Spaces -->
+    <div class="project-card reveal" style="grid-template-columns:1fr;">
+      <div class="project-body" style="padding:3rem;">
+        <p class="project-category">StoryMaps · MSU · April 2025</p>
+        <h2 class="project-title" style="font-size:clamp(1.4rem,2.5vw,2rem);">Surveilled Spaces: Exploring Memory, Borders, and Resistance in Palestinian Cinema</h2>
+        <p class="project-desc">
+          A StoryMap examining how Palestinian cinema documents and refuses surveillance infrastructures — tracing how filmmakers use the checkpoint as both setting and symbol to challenge the visual logic of occupation.
+        </p>
+        <div class="project-tags">
+          <span class="project-tag green">StoryMaps</span>
+          <span class="project-tag red">Surveillance Studies</span>
+          <span class="project-tag">Memory · Borders</span>
+          <span class="project-tag green">Palestinian Cinema</span>
         </div>
       </div>
     </div>
-    <div class="project-card p-4 mb-3 collapsible-card open">
-      <div class="row">
-        <div class="col-md-7">
-          <h3 class="mb-2">A Palm Oil Project</h3>
-          <div class="collapsible-content" style="display:block;">
-            <p>
-              <strong>A Palm Oil Project</strong> is a collaborative digital humanities project (with April Best and Jambi students) that explores the global, environmental, and social impacts of palm oil production. Using digital mapping and storytelling, the project traces the histories, labor, and ecologies entangled with palm oil in Indonesia and beyond.
-            </p>
-            <ul>
-              <li><strong>Platform:</strong> ArcGIS StoryMaps</li>
-              <li><strong>Focus:</strong> Environmental justice, labor, and global commodity chains</li>
-              <li><strong>Collaboration:</strong> April Best, Ayaat Ismail, &amp; graduate students from Jambi University, Indonesia</li>
-              <li><strong>Jambi Students (COIL group):</strong> Lindang Mei Dwi Sariningrum, M. Aris Munandar, Puputri, Annisa Putri Hadiningsih, Annisa Putri Hadiningsi</li>
-              <li><strong>Date:</strong> March 2024</li>
-            </ul>
-            <a href="https://storymaps.arcgis.com/stories/efea02be4abf4222b4499b848b27bbdc" class="btn btn-outline-success btn-sm mb-3" target="_blank">View the Palm Oil Project →</a>
-            <div class="rounded shadow-sm overflow-hidden" style="border:2px solid #e8dfd1; max-width:700px; margin:auto;">
-              <a href="https://storymaps.arcgis.com/stories/efea02be4abf4222b4499b848b27bbdc" target="_blank" style="display:block;">
-                <img src="assets/images/palmoil.png" 
-                     alt="Palm Oil Project Sneak Peek" 
-                     class="img-fluid" 
-                     style="width:100%; aspect-ratio:2/1; min-width:320px; max-width:700px; object-fit:cover; transition:transform 0.2s;">
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  </div>
+</section>
+
+<footer>
+  © 2026 Ayaat Ismail · Michigan State University · Digital Humanities &amp; Film Studies
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  revealEls.forEach(el => observer.observe(el));
+</script>
 </body>
 </html>

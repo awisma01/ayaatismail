@@ -5,67 +5,564 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Pedagogy — Ayaat Ismail</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Oswald:wght@300;400;500&family=IBM+Plex+Mono:wght@300;400&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=IBM+Plex+Mono:wght@300;400&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <style>
     :root {
-      --ink: #0e0e0e;
-      --paper: #f5f0e8;
-      --warm: #f0ead8;
-      --gold: #b8860b;
-      --rust: #8b3a2a;
-      --olive: #4a5240;
-      --muted: #5a5346;
+      /* Palestinian flag palette */
+      --black:    #0a0a0a;
+      --white:    #f7f2ea;
+      --green:    #1a6b3a;
+      --green-mid:#2d8c54;
+      --green-light:#e8f3ec;
+      --red:      #c0392b;
+      --red-soft: #f9e8e6;
+      --paper:    #f5f0e8;
+      --sand:     #e8dfd1;
+      --ink:      #1a1612;
+      --muted:    #5a5346;
+      --olive:    #4a5240;
     }
+
+    * { box-sizing: border-box; }
+
     body {
       font-family: 'Cormorant Garamond', Georgia, serif;
       background: var(--paper);
       color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    .navbar {
+      background: var(--white);
+      border-bottom: 3px solid var(--green);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .navbar-brand { font-weight:700; letter-spacing:1px; color:var(--ink)!important; }
+    .nav-link { color: var(--ink)!important; position:relative; transition:color 0.2s; font-size:1.05rem; }
+    .nav-link::after {
+      content:""; display:block; width:0; height:2px;
+      background:var(--red); transition:width 0.25s;
+      position:absolute; left:0; bottom:0;
+    }
+    .nav-link:hover::after, .nav-link.active::after { width:100%; }
+    .nav-link:hover, .nav-link.active { color:var(--green)!important; }
+
+    /* ── KEFFIYEH STRIPE HERO ── */
+    .hero-stripe {
+      height: 8px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--black)   0px,  var(--black)  16px,
+        var(--red)     16px, var(--red)    32px,
+        var(--green)   32px, var(--green)  48px,
+        var(--white)   48px, var(--white)  64px
+      );
+    }
+    .hero-section {
+      background: linear-gradient(135deg, var(--black) 0%, #1a2415 100%);
+      color: var(--white);
+      padding: 70px 0 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-section::before {
+      content: "";
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+    .hero-title {
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 300;
+      line-height: 1.1;
+      letter-spacing: -0.5px;
+    }
+    .hero-title em { color: var(--red); font-style: italic; }
+    .hero-title .green { color: #5bba7d; }
+    .hero-subtitle {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.9rem;
+      color: rgba(247,242,234,0.6);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .hero-quote {
+      font-family: 'Amiri', serif;
+      font-size: 1.3rem;
+      line-height: 1.7;
+      color: rgba(247,242,234,0.85);
+      border-left: 3px solid var(--red);
+      padding-left: 1.2rem;
+      max-width: 520px;
+    }
+
+    /* ── SECTION CHROME ── */
+    .section-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 300;
+      line-height: 1.15;
+    }
+    .accent-line {
+      width: 50px; height: 3px;
+      background: var(--red);
+      border-radius: 2px;
+      margin: 12px 0 28px;
+    }
+
+    /* ── PHILOSOPHY PILLARS ── */
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .pillar {
+      background: var(--white);
+      border-radius: 1rem;
+      padding: 2rem 1.8rem;
+      border-top: 4px solid transparent;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+      transition: transform 0.25s, box-shadow 0.25s;
+      cursor: default;
+    }
+    .pillar:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 32px rgba(0,0,0,0.10);
+    }
+    .pillar.p-green  { border-color: var(--green); }
+    .pillar.p-red    { border-color: var(--red); }
+    .pillar.p-black  { border-color: var(--black); }
+    .pillar.p-gold   { border-color: #b8860b; }
+    .pillar-icon { font-size: 2rem; margin-bottom: 0.8rem; }
+    .pillar h4 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--ink);
+    }
+    .pillar p { font-size: 1rem; color: var(--muted); margin: 0; line-height: 1.6; }
+
+    /* ── COURSES ACCORDION ── */
+    .courses-section { background: var(--black); color: var(--white); padding: 70px 0; }
+    .course-accordion { display: flex; flex-direction: column; gap: 0; }
+    .course-item {
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      overflow: hidden;
+    }
+    .course-item:first-child { border-top: 1px solid rgba(255,255,255,0.08); }
+    .course-trigger {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.4rem 0;
+      cursor: pointer;
+      user-select: none;
+      transition: color 0.2s;
+    }
+    .course-trigger:hover { color: #5bba7d; }
+    .course-trigger .course-name { font-size: 1.2rem; font-weight: 400; }
+    .course-trigger .course-meta {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.45);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-right: 1rem;
+    }
+    .course-trigger .arrow {
+      font-size: 1.2rem;
+      transition: transform 0.3s;
+      color: var(--red);
+      flex-shrink: 0;
+    }
+    .course-item.open .arrow { transform: rotate(45deg); }
+    .course-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1);
+    }
+    .course-item.open .course-body { max-height: 400px; }
+    .course-body-inner {
+      padding: 0 0 1.8rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+    }
+    @media(max-width:600px){ .course-body-inner { grid-template-columns: 1fr; } }
+    .course-body-inner p { color: rgba(247,242,234,0.75); font-size: 1rem; line-height: 1.65; }
+    .course-tag {
+      display: inline-block;
+      background: rgba(255,255,255,0.07);
+      border-radius: 4px;
+      padding: 2px 10px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.78rem;
+      color: #5bba7d;
+      margin: 2px;
+    }
+
+    /* ── INTERESTS TAGS ── */
+    .interests-section { padding: 70px 0; background: var(--white); }
+    .tag-cloud { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem; }
+    .tag {
+      padding: 0.5rem 1.2rem;
+      border-radius: 999px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+      cursor: default;
+      transition: transform 0.2s, box-shadow 0.2s;
+      border: 1.5px solid transparent;
+    }
+    .tag:hover { transform: scale(1.06); box-shadow: 0 4px 16px rgba(0,0,0,0.12); }
+    .tag.green  { background: var(--green-light); color: var(--green); border-color: var(--green); }
+    .tag.red    { background: var(--red-soft);    color: var(--red);   border-color: var(--red); }
+    .tag.dark   { background: #f0ebe3;             color: var(--ink);   border-color: var(--ink); }
+
+    /* ── FLYER ── */
+    .flyer-section { padding: 70px 0; }
+    .flyer-wrap {
+      position: relative;
+      max-width: 580px;
+    }
+    .flyer-wrap img {
+      width: 100%;
+      border-radius: 0.75rem;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.15);
+      transition: transform 0.3s;
+    }
+    .flyer-wrap:hover img { transform: rotate(-1deg) scale(1.02); }
+    .flyer-badge {
+      position: absolute;
+      top: -16px; right: -16px;
+      background: var(--red);
+      color: #fff;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 4px;
+      box-shadow: 0 4px 12px rgba(192,57,43,0.4);
+    }
+
+    /* ── KEFFIYEH DIVIDER ── */
+    .keffiyeh-divider {
+      height: 12px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--black)  0, var(--black)  20px,
+        var(--red)    20px, var(--red)    40px,
+        var(--green)  40px, var(--green)  60px,
+        var(--white)  60px, var(--white)  80px
+      );
+      opacity: 0.85;
+    }
+
+    /* ── FADE-IN ON SCROLL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black);
+      color: rgba(247,242,234,0.5);
+      text-align: center;
+      padding: 36px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
     }
   </style>
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light shadow-sm sticky-top">
-    <div class="container">
-      <a class="navbar-brand fw-bold" href="index.html">Ayaat <span>Ismail</span></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="mainNav">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link active" href="research.html">Pedagogy</a></li>
-          <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
-          <li class="nav-item"><a class="nav-link" href="cv.html">CV</a></li>
-        </ul>
+
+<!-- NAV -->
+<nav class="navbar navbar-expand-lg sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">Ayaat <span style="font-weight:300">Ismail</span></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link active" href="pedagogy.html">Pedagogy</a></li>
+        <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="cv.html">CV</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- KEFFIYEH STRIPE -->
+<div class="hero-stripe"></div>
+
+<!-- HERO -->
+<section class="hero-section">
+  <div class="container">
+    <p class="hero-subtitle">Teaching · Learning · Resistance</p>
+    <h1 class="hero-title mb-4">
+      Feminist &amp; <em>Decolonial</em><br>
+      <span class="green">Pedagogy</span>
+    </h1>
+    <blockquote class="hero-quote">
+      "The classroom is a site of witness — a space where knowledge is not transferred, but built together, with care and accountability."
+    </blockquote>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="container my-5 py-4">
+  <div class="reveal">
+    <p class="section-label">Teaching Philosophy</p>
+    <h2 class="section-title">Roots &amp; <em>Commitments</em></h2>
+    <div class="accent-line"></div>
+    <div class="col-md-8">
+      <p style="font-size:1.12rem;line-height:1.8;color:var(--muted);">
+        My teaching is rooted in feminist, anti-racist, and student-centered pedagogies. I design courses that foreground critical thinking, creativity, and collaborative inquiry — centering digital humanities, film, and global studies as tools for understanding power, representation, and resistance. The classroom, for me, is a space for students to develop skills for both academic and public scholarship while honoring the knowledge they already carry.
+      </p>
+    </div>
+  </div>
+  <div class="pillars-grid reveal">
+    <div class="pillar p-green">
+      <div class="pillar-icon">🌿</div>
+      <h4>Feminist Witnessing</h4>
+      <p>Making visible what dominant archives suppress — centering marginalized voices as primary epistemological sources.</p>
+    </div>
+    <div class="pillar p-red">
+      <div class="pillar-icon">🎞</div>
+      <h4>Cinema as Counter-Archive</h4>
+      <p>Film and visual media as sites of resistance — reading images against the grain of colonial documentation.</p>
+    </div>
+    <div class="pillar p-black">
+      <div class="pillar-icon">🗺</div>
+      <h4>Counter-Cartography</h4>
+      <p>Mapping as a political act — challenging borders drawn by occupation and reimagining space through community knowledge.</p>
+    </div>
+    <div class="pillar p-gold">
+      <div class="pillar-icon">✍🏽</div>
+      <h4>Sumud in Writing</h4>
+      <p>Steadfastness as method — teaching students to write as an act of presence, persistence, and refusal to disappear.</p>
+    </div>
+  </div>
+</section>
+
+<div class="keffiyeh-divider"></div>
+
+<!-- COURSES -->
+<section class="courses-section">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label" style="color:#5bba7d;">Classroom</p>
+      <h2 class="section-title" style="color:var(--white);">Courses <em style="color:var(--red);">Taught</em></h2>
+      <div class="accent-line"></div>
+    </div>
+    <div class="course-accordion reveal">
+
+      <div class="course-item open">
+        <div class="course-trigger">
+          <div>
+            <span class="course-meta">MSU · Summer 2026</span><br>
+            <span class="course-name">ENG/WS 153 — Introduction to Women Authors</span>
+          </div>
+          <span class="arrow">+</span>
+        </div>
+        <div class="course-body">
+          <div class="course-body-inner">
+            <p>An exploration of literary works by women writers across genres, periods, and geographies — centering voices long excluded from the Western canon. Students engage with feminist close reading, intersectional theory, and collaborative discussion.</p>
+            <div>
+              <span class="course-tag">Online</span>
+              <span class="course-tag">Instructor of Record</span>
+              <span class="course-tag">Feminist Theory</span>
+              <span class="course-tag">Close Reading</span>
+              <span class="course-tag">Intersectionality</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="course-item">
+        <div class="course-trigger">
+          <div>
+            <span class="course-meta">MSU · Summer 2025</span><br>
+            <span class="course-name">WGS 201 — Introduction to Women's &amp; Gender Studies</span>
+          </div>
+          <span class="arrow">+</span>
+        </div>
+        <div class="course-body">
+          <div class="course-body-inner">
+            <p>A foundational course in Women's and Gender Studies, tracing how gender, race, class, and sexuality intersect to shape social life. Students develop analytical frameworks for feminist inquiry across disciplines.</p>
+            <div>
+              <span class="course-tag">Online</span>
+              <span class="course-tag">Instructor of Record</span>
+              <span class="course-tag">Gender Theory</span>
+              <span class="course-tag">Decolonial Feminism</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="course-item">
+        <div class="course-trigger">
+          <div>
+            <span class="course-meta">MSU · 2024–Present</span><br>
+            <span class="course-name">IAH 207 — Race &amp; Cinema</span>
+          </div>
+          <span class="arrow">+</span>
+        </div>
+        <div class="course-body">
+          <div class="course-body-inner">
+            <p>Examines the entanglement of race and film — how cinema has historically constructed racial hierarchies, and how filmmakers of color have worked within and against those conventions. Taught under Professor Jeffrey Wray.</p>
+            <div>
+              <span class="course-tag">Graduate TA</span>
+              <span class="course-tag">Film Studies</span>
+              <span class="course-tag">Race Theory</span>
+              <span class="course-tag">Counter-Cinema</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="course-item">
+        <div class="course-trigger">
+          <div>
+            <span class="course-meta">Bellarmine · Spring 2023</span><br>
+            <span class="course-name">ENGL 225 — African American Literature</span>
+          </div>
+          <span class="arrow">+</span>
+        </div>
+        <div class="course-body">
+          <div class="course-body-inner">
+            <p>Surveys African American literary traditions from the slave narrative through contemporary fiction and poetry — emphasizing the relationship between form, voice, and political witness.</p>
+            <div>
+              <span class="course-tag">Adjunct Instructor</span>
+              <span class="course-tag">In-Person</span>
+              <span class="course-tag">Literary History</span>
+              <span class="course-tag">Testimony</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="course-item">
+        <div class="course-trigger">
+          <div>
+            <span class="course-meta">U of L · 2022–2023</span><br>
+            <span class="course-name">ENGL 101/102 — College Writing</span>
+          </div>
+          <span class="arrow">+</span>
+        </div>
+        <div class="course-body">
+          <div class="course-body-inner">
+            <p>Taught composition as a site of inquiry — students wrote about community, social identity, and argument through research, with an emphasis on the essay as a form of public thought.</p>
+            <div>
+              <span class="course-tag">Adjunct Instructor</span>
+              <span class="course-tag">Composition</span>
+              <span class="course-tag">Public Writing</span>
+              <span class="course-tag">Research-Based</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="keffiyeh-divider"></div>
+
+<!-- PEDAGOGICAL INTERESTS -->
+<section class="interests-section">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Areas of Practice</p>
+      <h2 class="section-title">Pedagogical <em>Interests</em></h2>
+      <div class="accent-line"></div>
+      <div class="tag-cloud">
+        <span class="tag green">Digital Storytelling</span>
+        <span class="tag red">Counter-Archives</span>
+        <span class="tag dark">Collaborative Projects</span>
+        <span class="tag green">Inclusive Assessment</span>
+        <span class="tag red">Public Humanities</span>
+        <span class="tag dark">Feminist Pedagogy</span>
+        <span class="tag green">Decolonial Curriculum</span>
+        <span class="tag red">Palestinian Cinema</span>
+        <span class="tag dark">Student-Centered Design</span>
+        <span class="tag green">StoryMaps &amp; GIS</span>
+        <span class="tag red">Oral Histories</span>
+        <span class="tag dark">Anti-Racist Composition</span>
+        <span class="tag green">Global Studies</span>
+        <span class="tag red">Surveillance Studies</span>
       </div>
     </div>
-  </nav>
-  <section class="container my-5">
-    <div class="section-header">
-      <h2 class="section-title">Pedagogy</h2>
-      <div class="section-header-line"></div>
-    </div>
-    <!-- Add your pedagogy content here -->
-    <div class="row">
-      <!-- Example: -->
-      <div class="col-md-8">
-        <p>
-          My teaching philosophy is rooted in feminist, anti-racist, and student-centered pedagogies. I design courses that foreground critical thinking, creativity, and collaborative inquiry, with a focus on digital humanities, film, and global studies. My classroom is a space for students to explore intersections of identity, power, and representation, and to develop skills for both academic and public scholarship.
+  </div>
+</section>
+
+<!-- FLYER -->
+<section class="flyer-section">
+  <div class="container">
+    <div class="row align-items-center g-5 reveal">
+      <div class="col-md-5">
+        <p class="section-label">In Practice</p>
+        <h2 class="section-title">Sample<br><em>Class Flyer</em></h2>
+        <div class="accent-line"></div>
+        <p style="color:var(--muted);font-size:1.05rem;line-height:1.7;">
+          Courses are designed as living documents — assignments, readings, and discussion structures evolve in response to student needs and current events. This flyer reflects one approach to making course goals visible and accessible to students from the first day.
         </p>
-        <ul>
-          <li><strong>Courses Taught:</strong> Introduction to Women Authors, Introduction to Women’s and Gender Studies, Race & Cinema, Monsters, African American Literature, College Writing, Editing & Publishing</li>
-          <li><strong>Pedagogical Interests:</strong> Digital storytelling, counter-archives, collaborative projects, inclusive assessment, public humanities</li>
-        </ul>
+      </div>
+      <div class="col-md-7">
+        <div class="flyer-wrap">
+          <span class="flyer-badge">Course Material</span>
+          <img src="assets/images/lass.png" alt="Sample Class Flyer" />
+        </div>
       </div>
     </div>
-    <div class="row mt-5">
-      <div class="col-md-8">
-        <h3 class="mb-3" style="color:var(--olive);font-size:1.3rem;">Sample Class Flyer</h3>
-        <img src="assets/images/lass.png" alt="Sample Class Flyer" class="img-fluid rounded shadow-sm" style="max-width:100%;height:auto;">
-      </div>
-    </div>
-  </section>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </div>
+</section>
+
+<footer>
+  © 2026 Ayaat Ismail · Michigan State University · Digital Humanities &amp; Film Studies
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // ── Accordion ──
+  document.querySelectorAll('.course-trigger').forEach(trigger => {
+    trigger.addEventListener('click', () => {
+      const item = trigger.closest('.course-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.course-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  // ── Scroll reveal ──
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
