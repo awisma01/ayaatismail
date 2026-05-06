@@ -1,6 +1,6 @@
 # Personal Website
 
-This is a personal website created to showcase the work and research of Ayaat Ismail, a PhD student and CHI Fellow at Michigan State University. The website includes sections for research interests, current projects, writing, and contact information.
+This is a personal website created to showcase the work and research of me as a PhD student and CHI Fellow at Michigan State University. The website includes sections for research interests, current projects, writing, and contact information.
 
 ## Project Structure
 
